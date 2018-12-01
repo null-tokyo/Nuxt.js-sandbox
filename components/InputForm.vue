@@ -5,7 +5,7 @@
     @submit.prevent="onSubmit">
     <div class="input">
       <input
-        v-model="task"
+        v-model="title"
         name="title"
         type="text">
       <button type="submit">
@@ -19,16 +19,13 @@
 export default {
   data() {
     return {
-      task: ''
+      title: ''
     }
   },
   methods: {
     onSubmit(e) {
-      this.$emit('add-todo', {
-        title: this.task,
-        timestamp: new Date().getTime()
-      })
-      this.task = ''
+      this.$store.commit('todos/add', this.title)
+      this.title = ''
     }
   }
 }

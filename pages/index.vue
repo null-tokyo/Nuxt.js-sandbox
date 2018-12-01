@@ -7,6 +7,7 @@
     <div class="l-todo-list">
       <TodoList 
         :todo-list="todoList" 
+        @complete="complete"
         @close="close"/>
     </div>
   </section>
@@ -22,14 +23,23 @@ export default {
     InputForm,
     TodoList
   },
-  data: () => {
-    return {
-      todoList: []
+  computed: {
+    todoList() {
+      return this.$store.state.todos.list
     }
   },
   methods: {
     addTodo(task) {
       this.todoList.unshift(task)
+    },
+    complete(task) {
+      let i = this.todoList.length
+      while (i--) {
+        if (this.todoList[i].timestamp === task.timestamp) {
+          this.todoList[i].complete = !this.todoList[i].complete
+          return
+        }
+      }
     },
     close(task) {
       let i = this.todoList.length

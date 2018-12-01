@@ -6,6 +6,7 @@
       <li>
         <Todo 
           :todo="todo" 
+          @complete="complete"
           @close="close"/>
       </li>
     </ul>
@@ -25,6 +26,9 @@ export default {
     }
   },
   methods: {
+    complete(val) {
+      this.$emit('complete', val)
+    },
     close(val) {
       this.$emit('close', val)
     }
