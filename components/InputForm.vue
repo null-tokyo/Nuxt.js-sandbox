@@ -24,8 +24,10 @@ export default {
   },
   methods: {
     onSubmit(e) {
-      this.$store.commit('todos/add', this.title)
-      this.title = ''
+      this.$store.dispatch('todos/ADD_TODO', {
+        title: this.title,
+        complete: false
+      })
     }
   }
 }

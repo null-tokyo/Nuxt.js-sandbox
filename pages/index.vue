@@ -1,14 +1,12 @@
 <template>
   <section class="container">
     <div class="l-input-form">
-      <InputForm
-        @add-todo="addTodo"/>
+      <InputForm/>
     </div>
     <div class="l-todo-list">
       <TodoList 
-        :todo-list="todoList" 
-        @complete="complete"
-        @close="close"/>
+        :todos="todos" 
+      />
     </div>
   </section>
 </template>
@@ -24,9 +22,12 @@ export default {
     TodoList
   },
   computed: {
-    todoList() {
-      return this.$store.state.todos.list
+    todos() {
+      return this.$store.getters['todos/todos']
     }
+  },
+  created() {
+    this.$store.dispatch('todos/INIT_TODO')
   },
   methods: {
     addTodo(task) {

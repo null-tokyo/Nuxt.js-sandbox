@@ -1,7 +1,7 @@
 <template>
   <div class="TodoList">
     <ul 
-      v-for="todo in todoList"
+      v-for="todo in todos"
       :key="todo.title">
       <li>
         <Todo 
@@ -20,7 +20,7 @@ export default {
     Todo
   },
   props: {
-    todoList: {
+    todos: {
       type: Array,
       required: true
     }
